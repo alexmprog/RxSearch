@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.renovavision.rxsearch"
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('../buildsystem/debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
+
+    buildTypes {
+
+        debug{
+            signingConfig signingConfigs.debug
+
+            buildConfigField "String", "GOOGLE_API_SERVER_URL", "\"https://www.googleapis.com\""
+            buildConfigField "String", "GOOGLE_CUSTOM_SEARCH_API_KEY", "\"ENTER_YOUR_API_KEY\""
+            buildConfigField "String", "GOOGLE_CUSTOM_SEARCH_ENGINE_ID", "\"ENTER_YOUR_ENGINE_KEY\""
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "GOOGLE_API_SERVER_URL", "\"https://www.googleapis.com\""
+            buildConfigField "String", "GOOGLE_CUSTOM_SEARCH_API_KEY", "\"ENTER_YOUR_API_KEY\""
+            buildConfigField "String", "GOOGLE_CUSTOM_SEARCH_ENGINE_ID", "\"ENTER_YOUR_ENGINE_KEY\""
+        }
+    }
+
+    dependencies {
+
+        Map<String, String> dependencies = rootProject.ext.librariesDependencies;
+
+        compile dependencies.appCompat
+        compile dependencies.recyclerView
+        compile dependencies.retrofit
+        compile dependencies.retrofitConverterGson
+        compile dependencies.retrofitAdapterRxJava
+        compile dependencies.glide
+        compile dependencies.rxAndroid
+        compile dependencies.butterKnife
+
+        testCompile dependencies.junit
+    }
+
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TintedProgressBar -->
+    <declare-styleable name="TintedProgressBar">
+        <attr name="tintColor" format="color|reference" />
+        <attr name="tintMode" format="enum">
+            <enum name="src_over" value="3" />
+            <enum name="src_in" value="5" />
+            <enum name="src_atop" value="9" />
+            <enum name="multiply" value="13" />
+            <enum name="screen" value="14" />
+        </attr>
+    </declare-styleable>
+</resources>
